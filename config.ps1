@@ -41,4 +41,4 @@ foreach ($key in $CustomArgs.Keys) {
 }
 
 # Execute Lua setup script with arguments
-. "$ConfigPath\lua\lua.exe" @ArgList
+. "$ConfigPath\lua\install\bin\lua.exe" @ArgList

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Enhanced universal shell setup script for Linux/macOS
-CONFIG_PATH="./.config/"
+CONFIG_PATH="./.config"
 PLATFORM=$(uname | tr '[:upper:]' '[:lower:]')
 MODE="auto"
 VERBOSE=false
@@ -64,9 +64,13 @@ fi
 # Add custom arguments
 LUA_ARGS+=("${CUSTOM_ARGS[@]}")
 
-if [ ! -f "$CONFIG_PATH/lua/lua" ]; then
-	. "$CONFIG_PATH/install-lua.sh"
+LUA_INSTALL_FOLDER="lua-bin"
+if [ ! -f "$CONFIG_PATH/$LUA_INSTALL_FOLDER/install/bin/lua" ]; then
+	"$CONFIG_PATH/install-lua.sh" LUA_FOLDER=$LUA_INSTALL_FOLDER 
 fi
 
+echo 
+
+cd .config
 # Execute Lua setup script
-. "$CONFIG_PATH/lua/lua" "${LUA_ARGS[@]}"
+"./$LUA_INSTALL_FOLDER/install/bin/lua" "${LUA_ARGS[@]}"
